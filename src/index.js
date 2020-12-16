@@ -22,10 +22,11 @@ const createHTML = (options) => {
 
   text ? ($element.innerHTML = text) : null;
 
-  $element.addEventListener("click", function (e) {
-    console.log(options.click);
-    options.click;
-  });
+  click
+    ? $element.addEventListener("click", function (e) {
+        options.click(e);
+      })
+    : null;
 
   return $element;
 };
@@ -33,8 +34,8 @@ const createHTML = (options) => {
 let $submitbtn = createHTML({
   type: "button",
   text: "submit",
-  click: (e) => {
-    return hanleSubmit(e);
+  click: function (e) {
+    hanleSubmit(e);
   },
   attrs: [
     { type: "class", value: "btn btn--primary" },
